@@ -12,6 +12,7 @@ import {
 } from '../../../actions/account';
 import SkeletonLoading from '../../common/SkeletonLoading';
 import { useRecoveryMethods } from '../../../hooks/recoveryMethods';
+import { actionsPending } from '../../../utils/alerts'
 
 const Container = styled.div`
 
@@ -91,7 +92,7 @@ const RecoveryContainer = () => {
         missingKinds.forEach(kind => activeMethods.push({kind: kind}));
     }
 
-    const loading = account.actionsPending.includes('LOAD_RECOVERY_METHODS') || account.actionsPending.includes('REFRESH_ACCOUNT');
+    const loading = actionsPending(['LOAD_RECOVERY_METHODS', 'REFRESH_ACCOUNT'])
 
     const handleDeleteMethod = async (method) => {
         try {
